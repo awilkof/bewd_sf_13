@@ -15,11 +15,29 @@ require 'typhoeus'#library that faciltates http requests
 require 'pry'
 require 'pry-byebug'
 require 'json'
-
+#2 Parsing response into JSON
 def connect_to_api(url)
   response = Typhoeus.get(url)
-  JSON.parse(response.body)
+  return JSON.parse(response.body)
 end
 
-reddit_url ='http://www.reddit.com/.json'
-reddit_json_response = connect_to_api(reddit_url)
+
+#3 Find stories
+def get_stories(reddit_json_response)
+  stories = reddit_json_response['data']['children']
+  stories.each do |story|
+    title = story['data']['title']
+    categories = story['data']['subreddit']
+    upvotes = story['data']['ups']
+    create_story_hash.push(story)
+  end
+end
+
+def create_story_hash(story_hash)
+  story_hash = {title: story["title"], categories: story["subreddit"], upvotes: story["ups"]}
+
+end
+
+url ='http://www.reddit.com/.json'
+reddit_json_response = connect_to_api(url)
+get_stories(reddit_json_response)
