@@ -12,8 +12,10 @@ class Thermostat
  #self.target , @target and target are all the same inside of this instance method
   def calibrate_temp
     if degrees > target #this the same as #@degrees
+      #could also be it's own method that is called here
       puts "It's #{degrees}That's too hot! Turn on the air conditioner"
     elsif @degrees < @target
+        #could also be it's own method that is called here
       puts "Brr!!! It's #{degrees}. It's too cold. Turn on the heat"
     else
       puts "ahhh! Just right"
