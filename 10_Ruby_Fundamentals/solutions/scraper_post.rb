@@ -36,6 +36,7 @@ def parse_results(raw_results)
 
   raw_results.each do |result|
     link = result.css('a')[1] #mechanize library
+
     name = link.text.strip
     url = "http://sfbay.craigslist.org" + link.attributes["href"].value
     price = result.search('span.price').text
