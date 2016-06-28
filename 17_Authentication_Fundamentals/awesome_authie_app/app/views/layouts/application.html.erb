@@ -8,6 +8,10 @@
 </head>
 <body>
   <div class="container-fluid"> </div>
+    <% flash.each do |k,v| %>
+    <div class = "alert alert- <%= k %>">
+      <%= v %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </div>
